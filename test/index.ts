@@ -1,19 +1,25 @@
 import { expect } from "chai";
+import { formatEther, parseEther } from "ethers/lib/utils";
 import { ethers } from "hardhat";
 
-describe("Greeter", function () {
-  it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+describe("Donation", function () {
+  it("After donate total amount equal donate value", async function () {
+    const Donation = await ethers.getContractFactory("Donation");
+    const donation = await Donation.deploy();
+    await donation.deployed();
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+    const totalAmountBefore = await donation.getTotalAmount();
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+    expect(formatEther(totalAmountBefore)).to.equal("0.0");
 
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
+    const donateTx = await donation.donate({
+      value: parseEther("100"),
+    });
 
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    await donateTx.wait();
+
+    const totalAmountAfter = await donation.getTotalAmount();
+
+    expect(formatEther(totalAmountAfter)).to.equal("100.0");
   });
 });
