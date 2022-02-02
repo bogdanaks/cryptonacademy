@@ -1,7 +1,9 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.11;
 
-contract Donation {
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Donation is Ownable {
   mapping(address => uint256) public donations;
   mapping(address => bool) public donatersListExist;
   address[] public donatersList;
@@ -17,8 +19,8 @@ contract Donation {
     }
   }
 
-  function withdrawal(uint256 _amount, address _withdrawAddress) external {
-    //
+  function withdrawal(uint256 _amount, address _withdrawAddress) external onlyOwner {
+    payable(_withdrawAddress).transfer(_amount);
   }
 
   function getTotalAmount() public view returns (uint256) {
