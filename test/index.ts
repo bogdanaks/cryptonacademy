@@ -50,4 +50,21 @@ describe("Donation", function () {
       Number(balanceBefore) + amountWithdraw
     );
   });
+
+  it("Get donaters", async function () {
+    const Donation = await ethers.getContractFactory("Donation");
+    const donation = await Donation.deploy();
+    await donation.deployed();
+
+    const [owner] = await ethers.getSigners();
+
+    const donateTx = await donation.donate({
+      value: parseEther("100"),
+    });
+    await donateTx.wait();
+
+    const donaters = await donation.getDonaters();
+
+    expect(donaters).include(owner.address);
+  });
 });
