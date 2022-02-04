@@ -7,8 +7,9 @@ describe("Donation", function () {
     const Donation = await ethers.getContractFactory("Donation");
     const donation = await Donation.deploy();
     await donation.deployed();
+    const [owner] = await ethers.getSigners();
 
-    const totalAmountBefore = await donation.getTotalAmount();
+    const totalAmountBefore = await donation.getTotalAmount(owner.address);
 
     expect(formatEther(totalAmountBefore)).to.equal("0.0");
 
@@ -22,7 +23,7 @@ describe("Donation", function () {
     });
     await donateTx2.wait();
 
-    const totalAmountAfter = await donation.getTotalAmount();
+    const totalAmountAfter = await donation.getTotalAmount(owner.address);
 
     expect(formatEther(totalAmountAfter)).to.equal("200.0");
   });
