@@ -7,15 +7,12 @@ import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
 
+import "./tasks/donate";
+import "./tasks/getDonaters";
+import "./tasks/getTotalAmount";
+import "./tasks/withdrawal";
+
 dotenv.config();
-
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
 
 const config: HardhatUserConfig = {
   solidity: "0.8.11",
