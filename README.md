@@ -2,6 +2,8 @@
 
 Take a look at my [other contract](https://github.com/bogdanaks/cryptobets/tree/master/cryptobets-smart-contract "other contract") if interested :smiley:
 
+Test contract deployed in Rinkeby on address: 0xEf1951F55F5d88fa1b448134078325C29Fe49f94
+
 Try running some of the following tasks:
 
 ```shell
