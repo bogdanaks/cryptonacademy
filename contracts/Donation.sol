@@ -23,8 +23,8 @@ contract Donation is Ownable {
     payable(_withdrawAddress).transfer(_amount);
   }
 
-  function getTotalAmount() public view returns (uint256) {
-    return donations[msg.sender];
+  function getTotalAmount(address _address) public view returns (uint256) {
+    return donations[_address];
   }
 
   function getDonaters() public view returns (address[] memory) {
