@@ -1,4 +1,4 @@
-# Test task on cryptonacademy
+# Test task for cryptonacademy
 
 Try running some of the following tasks:
 
