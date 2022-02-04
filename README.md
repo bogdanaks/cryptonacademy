@@ -1,5 +1,7 @@
 # Test task for cryptonacademy
 
+Take a look at my [other contract](https://github.com/bogdanaks/cryptobets/tree/master/cryptobets-smart-contract "other contract") if interested :smiley:
+
 Try running some of the following tasks:
 
 ```shell
